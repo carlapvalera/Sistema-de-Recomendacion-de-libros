@@ -1,0 +1,13 @@
+# Import libraries
+pip install os
+pip install re
+pip install nltk
+pip install spacy
+pip install gensim 
+pip install pandas 
+pip install gensim.models 
+pip install gensim 
+pip install matplotlib
+pip install streamlit
+pip install pandas
+pip install json
