@@ -13,13 +13,14 @@ st.title("Hi I am Claus, I can recommend you a book based on your preferences.")
 st.write(" Let me help you, what book have I already read?. Please enter the title of a book you like.")
 query = st.text_input("Enter the title of a book:")
 st.write("Here are some examples of books in our database:")
+st.write("")
 
 
 # Ask the user for their input
 libro_buscado = st.text_input("Ingresa el título del libro que te interesa:")
 
 # Check if user entered a title
-if libro_buscado:
+'''if libro_buscado:
     # Find the index of the book in the DataFrame (if it exists)
     try:
         libro_indice = libros.index[libros["titulo"] == libro_buscado].tolist()[0]
@@ -36,6 +37,7 @@ if libro_buscado:
     if libro_indice is not None:
         # ... (your existing code for calculating recommendations based on the selected book)
         # ... (your existing code for displaying the selected book information and recommendations)
+        print 
 else:
     # User didn't enter anything, display instructions or placeholders
-    st.write("Ingresa el título del libro que te interesa para obtener recomendaciones.")
+    st.write("Ingresa el título del libro que te interesa para obtener recomendaciones.")'''

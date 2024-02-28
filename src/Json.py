@@ -10,11 +10,7 @@ class Json():
         #matriz = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
         # Convertir la matriz a un objeto JSON
-        datos_json = json.dumps(self.matrix)
-
-        # Guardar el objeto JSON en un archivo
-        with open(self.path +"\\datamatriz.json", "w") as archivo:
-            archivo.write(datos_json)
+        self.matrix.to_json(self.path +"\\datamatriz.json")
 
     def load(self):
         # Abrir el archivo JSON
