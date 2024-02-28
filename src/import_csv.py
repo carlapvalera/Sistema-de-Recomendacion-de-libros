@@ -74,7 +74,3 @@ def get_data():
 
 
 
-a,b=get_data()
-
-print(a[0])
-print(b[0])
