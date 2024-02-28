@@ -60,8 +60,11 @@ class Process():
             print([len(t) for t in self.txts])
 
     #title_text(import_txt_files(root))
-
-
+    def import_csv(file_path):
+        data = pd.read_csv(file_path)
+        return data
+    def get_data(self,files):
+        pass
 
     ''''# Browse the list containing all the titles
     for i in range(len(titles)):
