@@ -1,6 +1,6 @@
 # Import libraries
-from Json import Json
-from imports import Process
+from codee import Json
+from codee import Process
 import os
 import streamlit as st
 import pandas as pd
@@ -14,18 +14,18 @@ file_root = os.path.abspath(__file__)
 folder_root= os.path.dirname(file_root)
 folder_root = os.path.dirname(folder_root)
 # Crear una instancia de la clase "Process"
-process = Process(folder_root+"\\input")
+process = Process(folder_root+"\\data")
 # Crear una instancia de la clase "Json"
 json = Json(None,folder_root+"\\data")
 # Imprimir la ruta
 #print(ruta_carpeta)
 # Importar los archivos .txt y almacenarlos en una lista title y text
-process.title_text(process.import_txt_files())
+process.title_text()
 token = process.normalize_text(process.txts)
 
-def import_txt_files(root):
-        # Lista para almacenar los archivos .txt
-        files_txt = []
+def import_json(root):
+        # Lista para almacenar los archivos .json
+        files_json = []
 
         # Obtener una lista de los archivos en la carpeta
         files = os.listdir(root)
@@ -33,12 +33,12 @@ def import_txt_files(root):
         # Filtrar solo los archivos .txt
         for file in files:
             if file.endswith(".json"):
-                files_txt.append(file)
+                files_json.append(file)
 
         # Imprimir la lista de archivos .txt
-        return(files_txt) 
+        return(files_json) 
 
-if(import_txt_files(folder_root+"\\data")[0] == "datamatriz.json"):
+if len(import_json(folder_root+"\\data"))==1:
     print("El archivo similarity_matrix.index existe")
     json.matrix = json.load()
 
@@ -88,8 +88,9 @@ st.write("Here are some examples of books in our database:")
 st.write("")
 # Assuming you have the similarity matrix 'sim_df' ready
 st.subheader("Similarity Matrix Dendrogram")
-process.plot_dendrogram(json.matrix)
-st.pyplot()
+st.set_option('deprecation.showPyplotGlobalUse', False)
+st.pyplot(process.plot_dendrogram(json.matrix))
+#st.pyplot(process.plot_dendrogram(json.matrix))
 
 
 if( query != ""):
@@ -105,7 +106,7 @@ if( query != ""):
 
         levenshtein = sorted(levenshtein_distance.items(), key=lambda x: x[1])
         st.write(levenshtein[0])
-        st.pyplot(process.plot_val(json.matrix,query))
+        #st.pyplot(process.plot_val(json.matrix,query))
         # Optionally: Offer suggestions based on user input
         # sugerencias = ... (implement logic to suggest similar books)
         # st.write("Tal vez te interesen estos libros:")
@@ -126,6 +127,8 @@ if( query != ""):
                 count += 1
             else:
                 break
+        #Call the plot_val function
+        st.subheader("Plot of most similar books")
         st.pyplot(process.plot_val(json.matrix,query))
 
         # ... your code defining the `plot_val` function ...
@@ -136,11 +139,10 @@ if( query != ""):
         st.dataframe(dict)
 
         # 2. Call the plot_val function
-        st.subheader("Plot of most similar books")
-        process.plot_val(dict, query)
+        #st.subheader("Plot of most similar books")
 
         # 3. Use st.pyplot to display the plot
-        st.pyplot()
+        #st.pyplot(process.plot_val(query))
         #print(dict)
 else:
     # User didn't enter anything, display instructions or placeholders

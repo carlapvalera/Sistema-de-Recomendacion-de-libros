@@ -11,3 +11,4 @@ pip install matplotlib
 pip install streamlit
 pip install pandas
 pip install json
+pip install csv
