@@ -1,5 +1,6 @@
 import json
-
+import pandas as pd
+import os
 class Json():
     def __init__(self, matrix, path):
        self.matrix = matrix
@@ -14,11 +15,15 @@ class Json():
 
     def load(self):
         # Abrir el archivo JSON
-        with open(self.path +"\\datamatriz.json", "r") as archivo:
+        # Load the JSON data into a DataFrame
+        matriz = pd.read_json(self.path+"\\datamatriz.json")
+        #Imprimir la matriz
+        print(matriz)
+        return matriz
+        
+    ''' with open(self.path +"\\datamatriz.json", "r") as archivo:
             datos_json = json.load(archivo)
 
         # Convertir el objeto JSON a una matriz
-        return datos_json
+        return datos_json'''
 
-        # Imprimir la matriz
-        #print(matriz)

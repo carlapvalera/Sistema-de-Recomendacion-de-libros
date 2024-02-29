@@ -86,6 +86,10 @@ st.write(" Let me help you, what book have I already read?. Please enter the tit
 query = st.text_input("Enter the title of a book:")
 st.write("Here are some examples of books in our database:")
 st.write("")
+# Assuming you have the similarity matrix 'sim_df' ready
+st.subheader("Similarity Matrix Dendrogram")
+process.plot_dendrogram(json.matrix)
+st.pyplot()
 
 
 if( query != ""):
@@ -101,6 +105,7 @@ if( query != ""):
 
         levenshtein = sorted(levenshtein_distance.items(), key=lambda x: x[1])
         st.write(levenshtein[0])
+        st.pyplot(process.plot_val(json.matrix,query))
         # Optionally: Offer suggestions based on user input
         # sugerencias = ... (implement logic to suggest similar books)
         # st.write("Tal vez te interesen estos libros:")
@@ -121,9 +126,26 @@ if( query != ""):
                 count += 1
             else:
                 break
+        st.pyplot(process.plot_val(json.matrix,query))
+
+        # ... your code defining the `plot_val` function ...
+
+        # Assuming you have the DataFrame 'sim_df' and a query ready
+
+        # 1. Display the DataFrame
+        st.dataframe(dict)
+
+        # 2. Call the plot_val function
+        st.subheader("Plot of most similar books")
+        process.plot_val(dict, query)
+
+        # 3. Use st.pyplot to display the plot
+        st.pyplot()
         #print(dict)
 else:
     # User didn't enter anything, display instructions or placeholders
     st.write("Ingresa el título del libro que te interesa para obtener recomendaciones.")
+
+
 
 

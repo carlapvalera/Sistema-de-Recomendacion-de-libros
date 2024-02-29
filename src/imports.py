@@ -216,26 +216,37 @@ class Process():
     #print(sim_df)
 
 
-    # This is needed to display plots in a notebook
+  # This is needed to display plots in a notebook
 
-    def plot_val(sim_df):
+    def plot_val(sim_df,query):
 
-        # Select the column corresponding to "On the Origin of Species" and 
-        v = sim_df['The Purpose Driven Life What on Earth Am I Here for']
+        # Select the column corresponding to "query" and 
+        v = sim_df[query]
 
         # Sort by ascending scores
-        v_sorted = v.sort_values()
+        v_sorted =sorted(v.items(), key=lambda x: x[1], reverse=True)
+
 
         # Plot this data has a horizontal bar plot
         v_sorted.plot.barh(x='lab', y='val', rot=0).plot()
 
-        # Modify the axes labels and plot title for a better readability
-        plt.xlabel("Score")
-        plt.ylabel("Book")
-        plt.title("Similarity")
+        # Modify the axes labels and plot title for better readability
+        plt.xlabel("Cosine distance")
+        plt.ylabel("")
+        plt.title("Most similar books to 'On the Origin of Species'")
 
         # Show the plot
         plt.show()
     #plot_val(sim_df)
+
+   
+    def plot_dendrogram(self,sim_df):
+        # Compute the clusters from the similarity matrix,
+        # using the Ward variance minimization algorithm
+        Z = hierarchy.linkage(sim_df, 'ward')
+
+        # Display this result as a horizontal dendrogram
+        a = hierarchy.dendrogram(Z,  leaf_font_size=8, labels=sim_df.index,  orientation="left")
+        plt.show()
 
     "C:\\blabla\\sriii\\recommend-books\\data\\datamatriz.json"
