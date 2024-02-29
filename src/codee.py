@@ -9,7 +9,7 @@ from gensim.models import TfidfModel
 from gensim import similarities
 from scipy.cluster import hierarchy
 import matplotlib.pyplot as plt
-
+import import_csv as imp
 class Process():
     def __init__(self, path):
         self.path = path
@@ -23,16 +23,11 @@ class Process():
         global txts 
         global titles 
 
-        with open(self.path+"\\books_1.Best_Books_Ever.csv", "r") as archivo_csv:
-            lector_csv = csv.reader(archivo_csv, delimiter=",")
-            count =0
-            for fila in lector_csv:
-                
-                count+=1
-                self.titles.append(fila[1])
-                self.txts.append(fila[5]) 
-                if count ==15:
-                    break
+        titless, texts=imp.get_data()
+
+        self.titles=titless[0:10]
+        self.txts=texts[0:10]
+
                 
         
 
