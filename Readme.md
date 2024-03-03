@@ -62,3 +62,25 @@ However, we now want to have a better understanding of the big picture and see h
 ## Levenshtein distance EXTRA
 The Levenshtein distance measures the difference between two strings by counting the minimum number of edit operations (insertions, deletions, and substitutions) required to transform one string into the other.
 We use it to guide the user in the event that they make a mistake when communicating with Claus.
+
+## Disadvantages of your information retrieval system:
+1. Lack of Boolean queries:
+
+Your system currently only supports single-term queries, limiting users' ability to refine their searches.
+Users cannot combine terms using Boolean operators like AND, OR, and NOT, reducing the precision and flexibility of the retrieval process.
+2. Reliance on correlation matrix:
+
+The correlation matrix might not be robust for large or highly diverse datasets.
+This can affect the accuracy of calculating document similarity.
+3. Limitations of TF-IDF:
+
+TF-IDF may not be effective for documents with similar vocabulary or infrequent terms.
+Important details within the textual content might be overlooked.
+4. Absence of term weighting:
+
+You don't assign importance to different terms within the query.
+This can affect retrieval accuracy as the frequency or significance of terms isn't considered.
+5. Lack of evaluation:
+
+There's no mention of evaluating your retrieval system.
+Assessing system performance through metrics like precision, recall, and F1-score is crucial.
